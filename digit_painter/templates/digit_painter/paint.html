@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <script src="{% static 'digit_painter/paint.js' %}"></script>
+</head>
+<body onload="init()">
+    <form action="{% url 'digit_painter:submit' %}" method="post">
+        {% csrf_token %}
+        <canvas id="paint" width="280" height="280" style="border: 5px solid #000000;">Update your browser to support HTML5 Canvas</canvas><br/>
+        <input type="hidden" name="img_base64" id="img_base64" value=""/>
+        <button onclick="clearcanvas()" type="button">Clear Canvas</button>
+        <button type="submit">Submit Image</button>
+    </form>
+</body>
+</html>
