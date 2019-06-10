@@ -3,4 +3,4 @@ gunicorn
 django-heroku
 keras
 numpy
-PIL
+pillow
