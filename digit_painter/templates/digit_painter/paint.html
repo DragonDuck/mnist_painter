@@ -5,14 +5,26 @@
     <title>Title</title>
     {% load static %}
     <script src="{% static 'digit_painter/paint.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'digit_painter/style.css' %}" />
 </head>
 <body onload="init()">
+<center>
+<h1>Digit classifier</h1>
+<div style="width: 800px;">
+<p>
+    This is an interactive demo of an image classification model. Try to draw any digit between 0 and 9 on the
+    canvas below and press "Classify Digit" to let a neural network determine what digit you most likely drew!
+</p>
+</div>
     <form action="{% url 'digit_painter:submit' %}" method="post">
         {% csrf_token %}
-        <canvas id="paint" width="280" height="280" style="border: 5px solid #000000;">Update your browser to support HTML5 Canvas</canvas><br/>
+        <canvas id="paint" width="280" height="280">Update your browser to support HTML5 Canvas</canvas><br/>
         <input type="hidden" name="img_base64" id="img_base64" value=""/>
         <button onclick="clearcanvas()" type="button">Clear Canvas</button>
-        <button type="submit">Submit Image</button>
+        <button type="submit">Classify Digit</button>
     </form>
+
+<footer>&copy; Jan Sauer <a href="http://www.jan-sauer.de">(www.jan-sauer.de)</a></footer>
+</center>
 </body>
 </html>

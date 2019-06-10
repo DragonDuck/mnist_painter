@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 import base64
 import numpy as np
 import re
@@ -14,7 +13,10 @@ def paint(request):
 
 def submit(request):
     # Strip the beginning metadata
-    img_base64 = re.search(r"base64,(.*)", request.POST["img_base64"]).group(1)
+    try:
+        img_base64 = re.search(r"base64,(.*)", request.POST["img_base64"]).group(1)
+    except AttributeError:
+        return redirect("/")
 
     # Converting the string requires a round-about way:
     #   First, a conversion to a bytestring
@@ -32,7 +34,7 @@ def submit(request):
     # img[img > 0] = 1
 
     # Send numpy array into neural network and obtain results
-    result = cnn.classify_image(img)
+    result, prob = cnn.classify_image(img)
 
     # Convert the NumPy array into an image and convert to base64 again
     arr_img = PIL.Image.fromarray((255 - img), mode="L").resize((280, 280), resample=PIL.Image.NEAREST)
@@ -40,4 +42,5 @@ def submit(request):
     arr_img.save(buffer, format="PNG")
     arr_img_base64 = 'data:image/png;base64,' + base64.b64encode(buffer.getvalue()).decode("utf-8")
 
-    return render(request, "digit_painter/results.html", {"img": arr_img_base64, "result": result})
+    return render(request, "digit_painter/results.html", {
+        "img": arr_img_base64, "result": result, "prob": "{:.2f}".format(prob * 100)})

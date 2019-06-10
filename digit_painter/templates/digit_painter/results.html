@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'digit_painter/style.css' %}" />
 </head>
 <body>
+<center>
+<h1>Digit classifier</h1>
+<div style="width: 800px;">
+<p>
+    This is what your drawing looks like for the neural network:
+</p>
+</div>
 <img src="{{ img }}" alt="NumPy representation of input" /><br/>
-<p>The input was classified as the digit '{{ result }}'</p>
+<p>The input was classified as the digit '{{ result }}' with a relative probability of {{ prob }} %
+<br/><br/>
+<small>Note that this probability is a relative probability compared to all other possible digits, i.e. the
+classifier does not know a category to represent "no digit".</small>
+<br/><br/>
+<a href="/">Do it again!</a>
+</p>
+<footer>&copy; Jan Sauer <a href="http://www.jan-sauer.de">(www.jan-sauer.de)</a></footer>
+</center>
 </body>
 </html>

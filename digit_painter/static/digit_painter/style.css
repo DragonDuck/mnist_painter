@@ -1,0 +1,35 @@
+body {
+    background-color: #F4F6C3;
+}
+
+canvas {
+    background-color: #FFFFFF;
+    border: 5px solid #000000;
+}
+
+button {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+img {
+    border: 5px solid #000000;
+}
+
+p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+footer {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 50px;
+}

@@ -20,7 +20,8 @@ def classify_image(arr):
     """
     model = keras.models.load_model(os.path.join("digit_painter", "static", "mnist_trained_model.h5"))
     arr = arr[np.newaxis, ..., np.newaxis]
-    return model.predict(arr).argmax()
+    pred = model.predict(arr)
+    return pred.argmax(), pred.max()
 
 
 def populate_db():
