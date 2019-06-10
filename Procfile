@@ -1,1 +1,1 @@
-web: python manage.py runserver
+web: gunicorn mnist_canvas.wsgi:application
