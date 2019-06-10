@@ -20,7 +20,7 @@
         {% csrf_token %}
         <canvas id="paint" width="280" height="280">Update your browser to support HTML5 Canvas</canvas><br/>
         <input type="hidden" name="img_base64" id="img_base64" value=""/>
-        <button onclick="clearcanvas()" type="button">Clear Canvas</button>
+        <button onclick="location.reload()" type="button">Clear Canvas</button>
         <button type="submit">Classify Digit</button>
     </form>
 

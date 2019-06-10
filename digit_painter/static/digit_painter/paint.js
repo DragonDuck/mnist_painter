@@ -42,8 +42,12 @@ function init(){
     }, false);
 };
 
+/*
+// This function is currently defunct as it does not seem to clear the form cache. Submitting after clearing the
+// canvas but not drawing anything new still submits the old content to the form.
 function clearcanvas(){
     var canvas = document.getElementById("paint");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+*/
